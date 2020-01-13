@@ -8,23 +8,38 @@ teacherCtrl.getTeachers = async (req, res) =>{
     res.json(teachers);
 };
 
-teacherCtrl.createTeacher = (req, res) =>{
+teacherCtrl.createTeacher = async (req, res) =>{
+    const teacher = new Teacher(req.body);
+    await teacher.save();
     res.json({
-        status:"Api Works",
-        teacher:"All teachers"
-    })
+        status: 'Teacher save'
+    });
 }
 
-teacherCtrl.getTeacher = (req, res) =>{
-
+teacherCtrl.getTeacher =  async (req, res) =>{
+    const teacher = await Teacher.findById(req.params.id);
+    res.json(teacher);
 };
 
-teacherCtrl.editTeacher = function(){
-
+teacherCtrl.editTeacher = async (req, res) =>{
+    const { id } = req.params;
+    const teacher = {
+        name : req.body.name,
+        surname : req.body.surname,
+        area : req.body.area,
+        salary : req.body.salary
+    }
+    await Teacher.findByIdAndUpdate(id, {$set:teacher}, {new:true});
+    res.json({
+        status: 'Teacher update'
+    });
 }
 
-teacherCtrl.deleteTeacher = function(){
-
+teacherCtrl.deleteTeacher = async (req, res) =>{
+    await Teacher.findOneAndDelete(req.params.id)
+    res.json({
+        status: 'Teacher Delete'
+    });
 }
 
 module.exports = teacherCtrl;
