@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-content">
                     <form #teacherform="ngForm" (ngSubmit)="addTeacher(teacherform)">
-                        <input type="hidden" name="_id" #_id=ngModel #name="ngModel" [(ngModel)]="teacherService.selectedTeacher._id">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="teacherService.selectedTeacher._id">
                         <div class="row">
                             <div class="input-field col s12">
                                 <input type="text" name="name" #name="ngModel" [(ngModel)]="teacherService.selectedTeacher.name" placeholder="Enter Your Name">
