@@ -1,4 +1,9 @@
 export class Teacher {
+    _id: String;
+    name: String;
+    surname: String;
+    area: String;
+    salary: Number;
 
     constructor(_id = '', name = '', surname = '', area= '', salary = 0){
         this._id = _id;
@@ -7,11 +12,4 @@ export class Teacher {
         this.area = area;
         this.salary = salary;
     }
-
-
-    _id: string;
-    name: string;
-    surname: string;
-    area: string;
-    salary: number;
 }

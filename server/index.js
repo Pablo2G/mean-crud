@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const { mongoose } = require('./database');
-const { cors } = require('cors');
+const cors = require('cors');
 
 //Settings (configuraciones basicas del servidor)
 app.set('port', process.env.PORT || 3000);
