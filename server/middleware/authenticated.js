@@ -6,12 +6,12 @@ var secret = 'clave_secreta_app';
 const authenticate = {};
 
 authenticate.ensureAuth = (req, res, next) =>{
-    if(!req.header.authorization){
-        console.log(req.header.authorization);
+    if(!req.headers.authorization){
+        console.log(req.headers.authorization);
         res.status(403).send({message:'Request with headers authorization'});
     }else{
         //Firs delete ' and ""
-        var token = req.header.authorization.replace(/['"']+/g,'');
+        var token = req.headers.authorization.replace(/['"']+/g,'');
         try{
             var payload = jwd.decode(token,secret);
             if(payload.exp <= moment().unix()){
